@@ -1,0 +1,45 @@
+.addСontainer {
+  background-color: rgb(128, 27, 206);
+  width: 500px;
+  padding: 10px;
+  margin: 5px 0 5px 0;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.inputTask {
+  width: 350px;
+  font-size: 12px;
+  padding: 3px 5px;
+  height: 30px;
+}
+
+.inputTask:focus {
+  outline: none;
+}
+
+.addTask {
+  background-color: rgb(222, 180, 255);
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(93, 20, 148);
+
+  height: 30px;
+  width: 120px;
+  border-radius: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.addTask:hover {
+  background-color: rgb(237, 217, 252);
+  transition: 0.2s;
+}

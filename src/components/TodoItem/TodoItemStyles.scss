@@ -1,0 +1,55 @@
+.taskCountainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+
+  padding: 5px 10px;
+  margin: 5px 0 5px 0;
+  border-radius: 5px;
+  border: 0.1px solid black;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.taskCountainer:nth-child(odd) {
+  background-color: rgba(223, 180, 255, 0.208);
+}
+
+.taskItem {
+  display: flex;
+  align-items: center;
+}
+
+.taskInformation {
+  .taskDescription {
+    font-size: 10px;
+    list-style-type: "\1F87A";
+    margin-left: 5px;
+  }
+}
+
+.iconTaskWrapper {
+  display: flex;
+}
+
+.iconTask {
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+
+  margin: 0 0 0 5px;
+}
+.iconTask:hover {
+  color: red;
+  transition: 0.3s;
+}
+
+.checkbox {
+  cursor: pointer;
+  margin: 0 5px 0 0;
+}
+
+.checkTask {
+  text-decoration: line-through;
+}

@@ -1,0 +1,28 @@
+.mainContainer {
+  // width: 500px;
+  // height: 100vh;
+  margin: 20px 0 10px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  font-size: 15px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 17px;
+  color: rgb(93, 20, 148);
+
+  width: 500px;
+  height: 35px;
+  background-color: rgb(222, 180, 255);
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
