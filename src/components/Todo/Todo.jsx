@@ -9,6 +9,7 @@ import {
   addDoc,
   deleteDoc,
   orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 
 import dayjs from "dayjs";
@@ -25,7 +26,7 @@ const Todo = () => {
 
   //read todos firebase
   useEffect(() => {
-    const q = query(collection(db, "todos"), orderBy("title"));
+    const q = query(collection(db, "todos"), orderBy("timestamp"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let todosArr = [];
       querySnapshot.forEach((doc) => {
@@ -51,6 +52,7 @@ const Todo = () => {
       description: "",
       file: false,
       date: date,
+      timestamp: serverTimestamp(),
     });
     setDate("");
     setInputValue("");
