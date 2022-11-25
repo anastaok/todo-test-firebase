@@ -39,7 +39,15 @@ const Modal = ({
             onChange={handleChangeTask}
           />
         </div>
-        {/* <input name="myFile" type="file" /> */}
+
+        <div className="titleTask">Дата завершения:</div>
+        <input
+          type="date"
+          name="date"
+          className="dateInput"
+          value={newValueTask.date}
+          onChange={handleChangeTask}
+        />
 
         <button className="saveChange" onClick={clickSave}>
           Сохранить

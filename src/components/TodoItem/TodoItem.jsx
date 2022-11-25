@@ -3,11 +3,15 @@ import Modal from "../Modal";
 import { db } from "../../firebase";
 import { updateDoc, doc } from "firebase/firestore";
 import "./TodoItemStyles.scss";
+import dayjs from "dayjs";
+import "dayjs/locale/ru";
 
 const TodoItem = ({ task, checkTask, deleteTask }) => {
+  // edit tasks
   const [newValueTask, setNewValueTask] = React.useState({
     title: task.title,
     description: task.description,
+    date: task.date,
   });
   const [open, setOpen] = React.useState(false);
 
@@ -15,13 +19,17 @@ const TodoItem = ({ task, checkTask, deleteTask }) => {
     await updateDoc(doc(db, "todos", task.id), {
       title: newValueTask.title,
       description: newValueTask.description,
+      date: newValueTask.date,
     });
   };
-  console.log(newValueTask);
   const handleChangeTask = (e) => {
     e.preventDefault();
     setNewValueTask({ ...newValueTask, [e.target.name]: e.target.value });
   };
+
+  // edit date tasks
+  const currentDate = dayjs().valueOf();
+  const taskDate = Date.parse(task.date);
 
   return (
     <div className="taskCountainer" key={task.id}>
@@ -33,12 +41,26 @@ const TodoItem = ({ task, checkTask, deleteTask }) => {
           type="checkbox"
         />
         <div className="taskInformation">
-          {task.title}&#46;&nbsp;
+          {task.title}
           {task.description ? (
             <li className="taskDescription"> {task.description}</li>
           ) : (
             ""
           )}
+
+          <div className="taskDate">
+            {currentDate < taskDate ? (
+              <div className="dateCompletion">
+                Дата завершения:&nbsp;
+                {dayjs(task.date).locale("ru").format("D MMMM YYYY")}
+              </div>
+            ) : (
+              <div className="dateOverdue">
+                Задача просрочена:&nbsp;
+                {dayjs(task.date).locale("ru").format("D MMMM YYYY")}
+              </div>
+            )}
+          </div>
         </div>
         <Modal
           open={open}

@@ -1,6 +1,6 @@
 .addСontainer {
   background-color: rgb(128, 27, 206);
-  width: 500px;
+  width: 550px;
   padding: 10px;
   margin: 5px 0 5px 0;
   border-radius: 5px;
@@ -12,7 +12,7 @@
 }
 
 .inputTask {
-  width: 350px;
+  width: 320px;
   font-size: 12px;
   padding: 3px 5px;
   height: 30px;
@@ -28,7 +28,7 @@
   font-weight: bold;
   color: rgb(93, 20, 148);
 
-  height: 30px;
+  height: 29px;
   width: 120px;
   border-radius: 2px;
 
@@ -40,6 +40,35 @@
 }
 
 .addTask:hover {
+  background-color: rgb(237, 217, 252);
+  transition: 0.2s;
+}
+
+.inputDate {
+  background-color: rgb(222, 180, 255);
+
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(93, 20, 148);
+
+  height: 29px;
+  width: 85px;
+  border: none;
+  border-radius: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+}
+
+::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 25px 0;
+}
+
+::-webkit-calendar-picker-indicator:hover {
   background-color: rgb(237, 217, 252);
   transition: 0.2s;
 }

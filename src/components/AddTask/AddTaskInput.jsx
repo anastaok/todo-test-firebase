@@ -1,7 +1,7 @@
 import React from "react";
 import "./AddTaskInputStyles.scss";
 
-const AddTodoInput = ({ addTask, inputTask, inputValue }) => {
+const AddTodoInput = ({ addTask, inputTask, inputValue, date, setDate }) => {
   return (
     <form onSubmit={addTask} className="addСontainer">
       <input
@@ -10,7 +10,14 @@ const AddTodoInput = ({ addTask, inputTask, inputValue }) => {
         value={inputValue}
         className="inputTask"
         placeholder="Введите задачу..."
-      ></input>
+      />
+
+      <input
+        type="date"
+        className="inputDate"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
       <div onClick={addTask} className="addTask">
         Добавить задачу
       </div>

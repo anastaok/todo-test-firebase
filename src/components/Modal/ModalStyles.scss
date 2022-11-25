@@ -1,5 +1,5 @@
 .overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -14,13 +14,13 @@
   align-items: center;
   background-color: rgb(248, 239, 255);
 
-  width: 500px;
+  width: 550px;
   min-height: 250px;
   padding: 10px 15px;
   border-radius: 5px;
   position: absolute;
   left: 50%;
-  top: 45%;
+  top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease-in-out;
@@ -96,6 +96,31 @@
     border: none;
     resize: none;
   }
+}
+
+.dateInput {
+  background-color: rgb(222, 180, 255);
+
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(93, 20, 148);
+
+  height: 29px;
+  width: 85px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+}
+
+.dateInput::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(130, 23, 211, 0.438);
+  transition: 0.2s;
 }
 
 .saveChange {

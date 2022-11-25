@@ -8,8 +8,10 @@ import {
   doc,
   addDoc,
   deleteDoc,
+  orderBy,
 } from "firebase/firestore";
 
+import dayjs from "dayjs";
 import "./TodoStyles.scss";
 import TodoItem from "../TodoItem";
 import AddTodoInput from "../AddTask/AddTaskInput";
@@ -17,10 +19,13 @@ import AddTodoInput from "../AddTask/AddTaskInput";
 const Todo = () => {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [date, setDate] = React.useState("");
+
+  const currentDate = dayjs().format("DD.MM.YYYY");
 
   //read todos firebase
   useEffect(() => {
-    const q = query(collection(db, "todos"));
+    const q = query(collection(db, "todos"), orderBy("title"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let todosArr = [];
       querySnapshot.forEach((doc) => {
@@ -34,8 +39,10 @@ const Todo = () => {
   //create task
   const addTask = async (event) => {
     event.preventDefault();
-    if (inputValue === "") {
-      alert("Пожалуйста, введите заголовок задачи :)");
+    if (!inputValue || !date) {
+      alert(
+        "Пожалуйста, введите заголовок задачи и дату её дату завершения :)"
+      );
       return;
     }
     await addDoc(collection(db, "todos"), {
@@ -43,8 +50,9 @@ const Todo = () => {
       completed: false,
       description: "",
       file: false,
-      data: new Date(),
+      date: date,
     });
+    setDate("");
     setInputValue("");
   };
 
@@ -67,12 +75,17 @@ const Todo = () => {
 
   return (
     <div className="mainContainer">
-      <div className="title">ToDo</div>
+      <div className="titleTodo">
+        <div className="titleText">ToDo</div>
+        <div className="dateToday">{currentDate}</div>
+      </div>
 
       <AddTodoInput
         addTask={addTask}
         inputTask={inputTask}
         inputValue={inputValue}
+        date={date}
+        setDate={setDate}
       />
 
       <div className="tasks">
