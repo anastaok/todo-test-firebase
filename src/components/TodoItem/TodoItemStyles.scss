@@ -2,13 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 550px;
-
-  padding: 5px 10px;
-  margin: 5px 0 5px 0;
-  border-radius: 5px;
+  width: 34.375rem;
+  padding: 0.35rem 0.625rem;
+  margin: 0.35rem 0 0.35rem 0;
+  border-radius: 0.35rem;
   border: 0.1px solid black;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.185rem 0.35rem rgba(0, 0, 0, 0.1);
 }
 
 .taskCountainer:nth-child(odd) {
@@ -21,28 +20,19 @@
 }
 
 .taskInformation {
+  .taskTitle {
+    font-weight: 600;
+  }
   .taskDescription {
-    font-size: 12px;
+    font-size: 0.75rem;
     list-style-type: "\1F87A";
-    margin-left: 5px;
-  }
-}
-
-.taskDate {
-  margin-top: 10px;
-  font-size: 12px;
-  font-weight: 700;
-
-  .dateCompletion {
-    color: green;
-  }
-  .dateOverdue {
-    color: red;
+    margin-left: 0.35rem;
   }
 }
 
 .iconTaskWrapper {
   display: flex;
+  align-items: center;
 }
 
 .iconTask {
@@ -50,8 +40,7 @@
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
-
-  margin: 0 0 0 5px;
+  margin: 0 0 0 0.35rem;
 }
 .iconTask:hover {
   color: red;
@@ -60,7 +49,7 @@
 
 .checkbox {
   cursor: pointer;
-  margin: 0 5px 0 0;
+  margin: 0 0.35rem 0 0;
 }
 
 .checkTask {

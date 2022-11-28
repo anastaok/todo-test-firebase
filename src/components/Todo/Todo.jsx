@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../firebase";
+import dayjs from "dayjs";
 import {
   query,
   collection,
@@ -12,34 +12,32 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-import dayjs from "dayjs";
-import "./TodoStyles.scss";
+import { db } from "../../firebase";
 import TodoItem from "../TodoItem";
-import AddTodoInput from "../AddTask/AddTaskInput";
+import AddTodoInput from "../AddTaskInput";
+import "./TodoStyles.scss";
 
 const Todo = () => {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [date, setDate] = React.useState("");
+  const [date, setDate] = useState("");
 
   const currentDate = dayjs().format("DD.MM.YYYY");
 
-  //read todos firebase
   useEffect(() => {
-    const q = query(collection(db, "todos"), orderBy("timestamp"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let todosArr = [];
-      querySnapshot.forEach((doc) => {
-        todosArr.push({ ...doc.data(), id: doc.id });
+    const sortedTodos = query(collection(db, "todos"), orderBy("timestamp"));
+    const unsubscribe = onSnapshot(sortedTodos, (snapshot) => {
+      const allTodos = [];
+      snapshot.forEach((doc) => {
+        allTodos.push({ ...doc.data(), id: doc.id });
       });
-      setTodos(todosArr);
+      setTodos(allTodos);
     });
     return () => unsubscribe();
   }, []);
 
-  //create task
-  const addTask = async (event) => {
-    event.preventDefault();
+  const addTask = async (e) => {
+    e.preventDefault();
     if (!inputValue || !date) {
       alert(
         "Пожалуйста, введите заголовок задачи и дату её дату завершения :)"
@@ -50,7 +48,7 @@ const Todo = () => {
       title: inputValue,
       completed: false,
       description: "",
-      file: false,
+      file: "",
       date: date,
       timestamp: serverTimestamp(),
     });
@@ -58,19 +56,17 @@ const Todo = () => {
     setInputValue("");
   };
 
-  const inputTask = (event) => {
-    const inputValue = event.target.value;
+  const inputTask = ({ target }) => {
+    const inputValue = target.value;
     setInputValue(inputValue);
   };
 
-  // Update completed task in firebase
   const checkTask = async (task) => {
     await updateDoc(doc(db, "todos", task.id), {
       completed: !task.completed,
     });
   };
 
-  // Delete task
   const deleteTask = async (id) => {
     await deleteDoc(doc(db, "todos", id));
   };
@@ -78,10 +74,9 @@ const Todo = () => {
   return (
     <div className="mainContainer">
       <div className="titleTodo">
-        <div className="titleText">ToDo</div>
+        <div className="titleText">Список задач</div>
         <div className="dateToday">{currentDate}</div>
       </div>
-
       <AddTodoInput
         addTask={addTask}
         inputTask={inputTask}
@@ -89,18 +84,17 @@ const Todo = () => {
         date={date}
         setDate={setDate}
       />
-
       <div className="tasks">
         {todos.length ? (
-          todos.map((task, index) => {
+          todos.map((task) => {
             return (
-              <TodoItem
-                key={task.id}
-                task={task}
-                index={index}
-                checkTask={checkTask}
-                deleteTask={deleteTask}
-              />
+              <React.Fragment key={task.id}>
+                <TodoItem
+                  task={task}
+                  checkTask={checkTask}
+                  deleteTask={deleteTask}
+                />
+              </React.Fragment>
             );
           })
         ) : (

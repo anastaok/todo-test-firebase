@@ -1,21 +1,20 @@
 .addСontainer {
   background-color: rgb(128, 27, 206);
-  width: 550px;
-  padding: 10px;
-  margin: 5px 0 5px 0;
-  border-radius: 5px;
-
+  width: 34.375rem;
+  padding: 0.625rem;
+  margin: 0.35rem 0 0.35rem 0;
+  border-radius: 0.35rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.185rem 0.35rem rgba(0, 0, 0, 0.1);
 }
 
 .inputTask {
-  width: 320px;
-  font-size: 12px;
-  padding: 3px 5px;
-  height: 30px;
+  width: 20rem;
+  font-size: 0.75rem;
+  padding: 0.185rem 0.35rem;
+  height: 1.875rem;
 }
 
 .inputTask:focus {
@@ -24,18 +23,15 @@
 
 .addTask {
   background-color: rgb(222, 180, 255);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
   color: rgb(93, 20, 148);
-
-  height: 29px;
-  width: 120px;
-  border-radius: 2px;
-
+  height: 1.812rem;
+  width: 7.5rem;
+  border-radius: 0.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
 }
 
@@ -46,16 +42,13 @@
 
 .inputDate {
   background-color: rgb(222, 180, 255);
-
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
   color: rgb(93, 20, 148);
-
-  height: 29px;
-  width: 85px;
+  height: 1.812rem;
+  width: 5.3rem;
   border: none;
-  border-radius: 2px;
-
+  border-radius: 0.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,7 +58,7 @@
 
 ::-webkit-calendar-picker-indicator {
   cursor: pointer;
-  padding: 25px 0;
+  padding: 1.55rem 0;
 }
 
 ::-webkit-calendar-picker-indicator:hover {

@@ -13,16 +13,15 @@
   flex-direction: column;
   align-items: center;
   background-color: rgb(248, 239, 255);
-
-  width: 550px;
-  min-height: 250px;
-  padding: 10px 15px;
-  border-radius: 5px;
+  width: 34.375rem;
+  min-height: 15.625rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.35rem;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.185rem 0.35rem rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease-in-out;
 }
 
@@ -50,8 +49,8 @@
 }
 
 .iconTaskModal {
-  width: 15px;
-  margin-left: 470px;
+  width: 1rem;
+  margin-left: 31.875rem;
   cursor: pointer;
   user-select: none;
   -moz-user-select: none;
@@ -63,36 +62,40 @@
 }
 
 .titleInputWrapper {
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
 
   .titleTask {
     display: flex;
     justify-content: center;
-    font-size: 14px;
   }
   .titleInput {
-    width: 455px;
-    height: 30px;
+    width: 28.45rem;
+    height: 1.875rem;
     outline: none;
-    border-radius: 5px;
+    border-radius: 0.35rem;
     border: none;
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
 .descTextWrapper {
-  margin-bottom: 10px;
-  font-size: 14px;
+  margin-bottom: 0.625rem;
+  font-size: 0.875rem;
 
   .titleDesc {
     display: flex;
     justify-content: center;
   }
   .descTextarea {
-    width: 455px;
-    min-height: 150px;
+    width: 28.45rem;
+    min-height: 9.375rem;
     outline: none;
-    border-radius: 5px;
+    border-radius: 0.35rem;
     border: none;
     resize: none;
   }
@@ -100,17 +103,14 @@
 
 .dateInput {
   background-color: rgb(222, 180, 255);
-
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
   color: rgb(93, 20, 148);
-
-  height: 29px;
-  width: 85px;
-  margin-bottom: 10px;
+  height: 1.875rem;
+  width: 5.3rem;
+  margin-bottom: 0.625rem;
   border: none;
-  border-radius: 2px;
-
+  border-radius: 0.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,21 +123,20 @@
   transition: 0.2s;
 }
 
-.saveChange {
+.buttonModal {
   background-color: rgb(222, 180, 255);
-  font-size: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 0.625rem;
   font-weight: bold;
   color: rgb(93, 20, 148);
-
-  height: 30px;
+  height: 1.875rem;
   width: 120px;
   border-radius: 2px;
   border: none;
-
   cursor: pointer;
 }
 
-.saveChange:hover {
+.buttonModal:hover {
   background-color: rgba(130, 23, 211, 0.438);
   transition: 0.2s;
 }

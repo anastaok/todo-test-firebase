@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./AddTaskInputStyles.scss";
 
 const AddTodoInput = ({ addTask, inputTask, inputValue, date, setDate }) => {
@@ -11,14 +12,13 @@ const AddTodoInput = ({ addTask, inputTask, inputValue, date, setDate }) => {
         className="inputTask"
         placeholder="Введите задачу..."
       />
-
       <input
         type="date"
         className="inputDate"
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />
-      <div onClick={addTask} className="addTask">
+      <div type="submit" onClick={addTask} className="addTask">
         Добавить задачу
       </div>
     </form>

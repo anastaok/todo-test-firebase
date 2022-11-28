@@ -1,11 +1,13 @@
 import "./ModalStyles.scss";
 
 const Modal = ({
+  task,
   open,
   setOpen,
   newValueTask,
   handleChangeTask,
   handleEditTask,
+  deleteFileTask,
 }) => {
   const clickSave = () => {
     handleEditTask();
@@ -14,10 +16,9 @@ const Modal = ({
   return (
     <div className={`overlay animated ${open ? "show" : ""}`}>
       <div className="modal">
-        <span className="iconTaskModal" onClick={() => setOpen(false)}>
+        <span className="iconTaskModal" onClick={() => setOpen(!open)}>
           &#10008;
         </span>
-
         <div className="titleInputWrapper">
           <div className="titleTask">Задача:</div>
           <input
@@ -28,7 +29,6 @@ const Modal = ({
             onChange={handleChangeTask}
           />
         </div>
-
         <div className="descTextWrapper">
           <div className="titleDesc">Описание:</div>
           <textarea
@@ -39,17 +39,32 @@ const Modal = ({
             onChange={handleChangeTask}
           />
         </div>
-
-        <div className="titleTask">Дата завершения:</div>
-        <input
-          type="date"
-          name="date"
-          className="dateInput"
-          value={newValueTask.date}
-          onChange={handleChangeTask}
-        />
-
-        <button className="saveChange" onClick={clickSave}>
+        <div className="titleInputWrapper">
+          <div className="titleTask">Дата завершения:</div>
+          <input
+            type="date"
+            name="date"
+            className="dateInput"
+            value={newValueTask.date}
+            onChange={handleChangeTask}
+          />
+        </div>
+        <div className="fileWrapper">
+          {task.file && (
+            <a
+              className="fileLink"
+              href={task.file}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <button className="buttonModal">СКАЧАТЬ ФАЙЛ</button>
+            </a>
+          )}
+          <button className="buttonModal" onClick={deleteFileTask}>
+            УДАЛИТЬ ФАЙЛ
+          </button>
+        </div>
+        <button className="buttonModal" onClick={clickSave}>
           Сохранить
         </button>
       </div>

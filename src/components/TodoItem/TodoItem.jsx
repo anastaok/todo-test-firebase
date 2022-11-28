@@ -1,19 +1,19 @@
-import React from "react";
-import Modal from "../Modal";
-import { db } from "../../firebase";
+import React, { useState } from "react";
 import { updateDoc, doc } from "firebase/firestore";
+
+import { db } from "../../firebase";
+import TaskExecutionTime from "./components/TaskExecutionTime";
+import TaskFile from "./components/TaskFile";
+import Modal from "../Modal";
 import "./TodoItemStyles.scss";
-import dayjs from "dayjs";
-import "dayjs/locale/ru";
 
 const TodoItem = ({ task, checkTask, deleteTask }) => {
-  // edit tasks
-  const [newValueTask, setNewValueTask] = React.useState({
+  const [openModal, setOpenModal] = useState(false);
+  const [newValueTask, setNewValueTask] = useState({
     title: task.title,
     description: task.description,
     date: task.date,
   });
-  const [open, setOpen] = React.useState(false);
 
   const handleEditTask = async () => {
     await updateDoc(doc(db, "todos", task.id), {
@@ -22,14 +22,19 @@ const TodoItem = ({ task, checkTask, deleteTask }) => {
       date: newValueTask.date,
     });
   };
-  const handleChangeTask = (e) => {
-    e.preventDefault();
-    setNewValueTask({ ...newValueTask, [e.target.name]: e.target.value });
+
+  const handleChangeTask = (event) => {
+    setNewValueTask({
+      ...newValueTask,
+      [event.target.name]: event.target.value,
+    });
   };
 
-  // edit date tasks
-  const currentDate = dayjs().valueOf();
-  const taskDate = Date.parse(task.date);
+  const deleteFileTask = () => {
+    updateDoc(doc(db, "todos", task.id), {
+      file: "",
+    });
+  };
 
   return (
     <div className="taskCountainer" key={task.id}>
@@ -41,39 +46,26 @@ const TodoItem = ({ task, checkTask, deleteTask }) => {
           type="checkbox"
         />
         <div className="taskInformation">
-          {task.title}
+          <div className="taskTitle">{task.title}</div>
           {task.description ? (
             <li className="taskDescription"> {task.description}</li>
-          ) : (
-            ""
-          )}
-
-          <div className="taskDate">
-            {currentDate < taskDate ? (
-              <div className="dateCompletion">
-                Дата завершения:&nbsp;
-                {dayjs(task.date).locale("ru").format("D MMMM YYYY")}
-              </div>
-            ) : (
-              <div className="dateOverdue">
-                Задача просрочена:&nbsp;
-                {dayjs(task.date).locale("ru").format("D MMMM YYYY")}
-              </div>
-            )}
-          </div>
+          ) : null}
+          <TaskExecutionTime date={task.date} />
         </div>
         <Modal
-          open={open}
-          setOpen={setOpen}
+          task={task}
+          open={openModal}
+          setOpen={setOpenModal}
           newValueTask={newValueTask}
           handleChangeTask={handleChangeTask}
           handleEditTask={handleEditTask}
+          deleteFileTask={deleteFileTask}
         />
       </div>
 
       <div className="iconTaskWrapper">
-        <div className="iconTask">&#128447;</div>
-        <div onClick={() => setOpen(true)} className="iconTask">
+        <TaskFile task={task} />
+        <div onClick={() => setOpenModal(!openModal)} className="iconTask">
           &#10000;
         </div>
         <div className="iconTask" onClick={() => deleteTask(task.id)}>
