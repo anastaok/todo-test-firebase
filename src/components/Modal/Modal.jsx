@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import "./ModalStyles.scss";
 
 const Modal = ({
@@ -51,18 +52,20 @@ const Modal = ({
         </div>
         <div className="fileWrapper">
           {task.file && (
-            <a
-              className="fileLink"
-              href={task.file}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <button className="buttonModal">СКАЧАТЬ ФАЙЛ</button>
-            </a>
+            <Fragment>
+              <a
+                className="fileLink"
+                href={task.file}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <button className="buttonModal">СКАЧАТЬ ФАЙЛ</button>
+              </a>
+              <button className="buttonModal" onClick={deleteFileTask}>
+                УДАЛИТЬ ФАЙЛ
+              </button>
+            </Fragment>
           )}
-          <button className="buttonModal" onClick={deleteFileTask}>
-            УДАЛИТЬ ФАЙЛ
-          </button>
         </div>
         <button className="buttonModal" onClick={clickSave}>
           Сохранить
